@@ -82,7 +82,7 @@ class Array(Sequence[T]):
     self.curr_size += 1
     return Array(*self.values)
 
-  def pop(self):
+  def pop(self) -> Self:
     if self.curr_size == 0:
       raise IndexError('Array is empty')
     
@@ -90,7 +90,7 @@ class Array(Sequence[T]):
     self.curr_size -= 1
     return Array(*self.values)
 
-  def remove(self, position):
+  def remove(self, position) -> Self:
     if self.curr_size == 0:
       raise IndexError('Array is empty')
     elif 0 > position:
@@ -104,6 +104,12 @@ class Array(Sequence[T]):
     self.values[self.curr_size - 1] = None
     self.curr_size -= 1
     return Array(*self.values)
+  
+  def index_of(self, element) -> T:
+    return next(filter(lambda e: e == element, self.values))
+
+    
+    
     
 
 
