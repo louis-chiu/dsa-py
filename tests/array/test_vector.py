@@ -113,7 +113,7 @@ class TestVector:
 
         while not vector.is_empty():
             current_capacity = 0
-            if vector.size - 1 < vector.capacity() * vector._SHIRNK_THRESHOLD:
+            if vector.size - 1 < vector.capacity() * vector._SHRINK_THRESHOLD:
                 current_capacity = vector.capacity()
 
             vector.pop()

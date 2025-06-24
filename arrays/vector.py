@@ -8,7 +8,7 @@ E = TypeVar("E", bound=np.generic)
 
 class Vector(Generic[E]):
     _RESIZE_FACTOR: int = 2
-    _SHIRNK_THRESHOLD: float = 0.25
+    _SHRINK_THRESHOLD: float = 0.25
 
     _INITIAL_ARRAY_CAPACITY: int = 100
 
@@ -76,7 +76,7 @@ class Vector(Generic[E]):
         self.insert(0, item)
 
     def pop(self) -> E:
-        if self.size - 1 < self.capacity() * self._SHIRNK_THRESHOLD:
+        if self.size - 1 < self.capacity() * self._SHRINK_THRESHOLD:
             self._resize(self.capacity() // self._RESIZE_FACTOR)
 
         self._size -= 1
@@ -91,7 +91,7 @@ class Vector(Generic[E]):
                 f"Index out of range: size is {self.size}, but requested index is {index}"
             )
 
-        if self.size - 1 < self.capacity() * self._SHIRNK_THRESHOLD:
+        if self.size - 1 < self.capacity() * self._SHRINK_THRESHOLD:
             self._resize(self.capacity() // self._RESIZE_FACTOR)
 
         self._items[index : self.size] = self._items[index + 1 : self.size + 1]
@@ -106,7 +106,7 @@ class Vector(Generic[E]):
         return -1
 
     def remove(self, item: E) -> bool:
-        if self.size - 1 < self.capacity() * self._SHIRNK_THRESHOLD:
+        if self.size - 1 < self.capacity() * self._SHRINK_THRESHOLD:
             self._resize(self.capacity() // self._RESIZE_FACTOR)
 
         index = self.find(item)
